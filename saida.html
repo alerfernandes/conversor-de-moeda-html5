@@ -11,12 +11,6 @@
 				location.href = "entrada.html";
 			}
 			
-			function carregaresposta() {
-				var oUrl = new URL(location.href) // "O" é utilzado na variavel para identificar que é Objeto
-				var sValorOrigem = oUrl.searchParams.get("valor_origem"); // "S" é utilzado na variavel para identificar que é Objeto
-				console.log(sValorOrigem);
-			}
-			
 			function callback(){
 				console.log("Caiu aqui");
 				var oResponse = this;
@@ -25,7 +19,11 @@
 				var sReais = oJSON.rates.BRL;
 				console.log(sReais);
 				
-				document.querySelector("#valor_destino").value = sReais;
+				var oUrl = new URL(location.href) // "O" é utilzado na variavel para identificar que é Objeto
+				var sValorOrigem = oUrl.searchParams.get("valor_origem"); // "S" é utilzado na variavel para identificar que é Objeto
+				console.log(sValorOrigem);
+				
+				document.querySelector("#valor_destino").value = sReais * sValorOrigem;
 			}
 			
 			function chamaAPI(){
@@ -57,7 +55,7 @@
          <input id="valor_destino" type="Number" disabled>
          
          <br />
-         <button type="button" onclick="Voltar()">
+         <button type="button" onclick="voltar()">
          	Voltar
          </button>
          
